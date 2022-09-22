@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>627</width>
-    <height>779</height>
+    <width>630</width>
+    <height>780</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>630</width>
+    <height>780</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>630</width>
+    <height>780</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -90,7 +102,7 @@
              <number>0</number>
             </property>
             <item row="0" column="0">
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="ScoreUp">
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -107,7 +119,7 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="ScoreLabel">
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -140,7 +152,7 @@
              <number>0</number>
             </property>
             <item row="0" column="0">
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="BestUp">
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -157,7 +169,7 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="BestLabel">
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
@@ -261,52 +273,340 @@
          <number>10</number>
         </property>
         <item row="3" column="2">
-         <widget class="QWidget" name="viewBlock_14" native="true"/>
+         <widget class="QWidget" name="viewBlock_14" native="true">
+          <layout class="QGridLayout" name="gridLayout_30">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_14"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QWidget" name="viewBlock_4" native="true"/>
+         <widget class="QWidget" name="viewBlock_4" native="true">
+          <layout class="QGridLayout" name="gridLayout_20">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_4"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="2" column="3">
-         <widget class="QWidget" name="viewBlock_11" native="true"/>
+         <widget class="QWidget" name="viewBlock_11" native="true">
+          <layout class="QGridLayout" name="gridLayout_27">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_11"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="1" column="3">
-         <widget class="QWidget" name="viewBlock_7" native="true"/>
+         <widget class="QWidget" name="viewBlock_7" native="true">
+          <layout class="QGridLayout" name="gridLayout_23">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_7"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="3" column="3">
-         <widget class="QWidget" name="viewBlock_15" native="true"/>
+         <widget class="QWidget" name="viewBlock_15" native="true">
+          <layout class="QGridLayout" name="gridLayout_31">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_15"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QWidget" name="viewBlock_8" native="true"/>
+         <widget class="QWidget" name="viewBlock_8" native="true">
+          <layout class="QGridLayout" name="gridLayout_24">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_8"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QWidget" name="viewBlock_9" native="true"/>
+         <widget class="QWidget" name="viewBlock_9" native="true">
+          <layout class="QGridLayout" name="gridLayout_25">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_9"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QWidget" name="viewBlock_0" native="true"/>
+         <widget class="QWidget" name="viewBlock_0" native="true">
+          <layout class="QGridLayout" name="gridLayout_2">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_0"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QWidget" name="viewBlock_5" native="true"/>
+         <widget class="QWidget" name="viewBlock_5" native="true">
+          <layout class="QGridLayout" name="gridLayout_21">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_5"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QWidget" name="viewBlock_6" native="true"/>
+         <widget class="QWidget" name="viewBlock_6" native="true">
+          <layout class="QGridLayout" name="gridLayout_22">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_6"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QWidget" name="viewBlock_12" native="true"/>
+         <widget class="QWidget" name="viewBlock_12" native="true">
+          <layout class="QGridLayout" name="gridLayout_28">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_12"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QWidget" name="viewBlock_13" native="true"/>
+         <widget class="QWidget" name="viewBlock_13" native="true">
+          <layout class="QGridLayout" name="gridLayout_29">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_13"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QWidget" name="viewBlock_2" native="true"/>
+         <widget class="QWidget" name="viewBlock_2" native="true">
+          <layout class="QGridLayout" name="gridLayout_18">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_2"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="0" column="3">
-         <widget class="QWidget" name="viewBlock_3" native="true"/>
+         <widget class="QWidget" name="viewBlock_3" native="true">
+          <layout class="QGridLayout" name="gridLayout_19">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_3"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QWidget" name="viewBlock_1" native="true"/>
+         <widget class="QWidget" name="viewBlock_1" native="true">
+          <layout class="QGridLayout" name="gridLayout_17">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_1"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QWidget" name="viewBlock_10" native="true"/>
+         <widget class="QWidget" name="viewBlock_10" native="true">
+          <layout class="QGridLayout" name="gridLayout_26">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="block_10"/>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </item>
