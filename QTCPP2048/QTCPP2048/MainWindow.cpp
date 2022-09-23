@@ -6,8 +6,8 @@ MainWindow::MainWindow(QWidget* parent)
 	ui.setupUi(this);
 	ui.PreviousButton->setFocusPolicy(Qt::FocusPolicy::NoFocus);
 	ui.NewGameButton->setFocusPolicy(Qt::FocusPolicy::NoFocus);
-
-	start();
+	this->setAttribute(Qt::WA_StyledBackground);
+	//start();
 }
 
 MainWindow::~MainWindow()
@@ -19,7 +19,8 @@ void MainWindow::start()
 {
 	//TODO 初始化游戏，计分
 	_start = true;
-	Block *b1 = new Block(2);
+	Block *b1 = new Block(2048);
+	b1->SetBlock(2);
 	ui.block_0->addWidget(b1);
 }
 

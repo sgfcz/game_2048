@@ -12,12 +12,12 @@ public:
 	MainWindow(QWidget* parent = Q_NULLPTR);
 	~MainWindow();
 
+	void start();
 private:
 	Ui::MainWindow ui;
 	bool _start = false;
 
 private:
-	void start();
 	void end();
 	void moveLeft();
 	void moveRight();
