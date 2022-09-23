@@ -395,7 +395,9 @@ border-radius:8px;</string>
        <widget class="QWidget" name="BlockWidget" native="true">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(187, 173, 160);
-border-radius:8px</string>
+border-radius:8px;
+QLabel{
+}</string>
         </property>
         <layout class="QGridLayout" name="BlockGL">
          <property name="leftMargin">
