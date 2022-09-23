@@ -19,7 +19,7 @@ void MainWindow::start()
 {
 	//TODO 初始化游戏，计分
 	_start = true;
-	Block *b1 = new Block(2, QColor(120, 120, 120));
+	Block *b1 = new Block(2);
 	ui.block_0->addWidget(b1);
 }
 
@@ -54,6 +54,7 @@ void MainWindow::movedown()
 	//TODO 向下移动逻辑
 	//作业
 	std::cout << "Move Down!"<< std::endl;
+	Qt::red;
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
