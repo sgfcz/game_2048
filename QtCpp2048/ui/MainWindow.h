@@ -3,14 +3,14 @@
 #include <QtWidgets/QMainWindow>
 #include <QKeyEvent>
 #include "ui_MainWindow.h"
-#include "Block.h"
+#include "../core/Block.h"
 
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	MainWindow(QWidget* parent = Q_NULLPTR);
-	~MainWindow();
+	explicit MainWindow(QWidget* parent = Q_NULLPTR);
+	~MainWindow() override;
 
 	void start();
 private:
@@ -24,6 +24,6 @@ private:
 	void moveUp();
 	void movedown();
 
-	void keyPressEvent(QKeyEvent* event);
+	void keyPressEvent(QKeyEvent* event) override;
 };
 

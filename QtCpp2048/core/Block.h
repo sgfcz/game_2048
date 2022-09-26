@@ -21,8 +21,8 @@ class Block : public QLabel
 {
 	Q_OBJECT
 public:
-	Block(int number, QWidget* parent = Q_NULLPTR);
-	~Block();
+	explicit Block(int number, QWidget* parent = Q_NULLPTR);
+	~Block() override;
 
 	void SetBlock(int number);
 private:

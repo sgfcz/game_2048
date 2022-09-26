@@ -12,7 +12,14 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(QtCpp2048 main.cpp)
+add_executable(QtCpp2048
+        main.cpp
+        ui/MainWindow.h
+        ui/MainWindow.cpp
+        ui/MainWindow.ui
+        core/Block.h
+        core/Block.cpp
+        )
 
 target_link_libraries(QtCpp2048
         Qt5::Core

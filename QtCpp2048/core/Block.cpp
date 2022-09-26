@@ -8,8 +8,7 @@ Block::Block(int number, QWidget *parent) : QLabel(parent)
 }
 
 Block::~Block()
-{
-}
+= default;
 
 void Block::SetBlock(int number)
 {
