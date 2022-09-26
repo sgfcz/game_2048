@@ -17,7 +17,7 @@ void MainWindow::start()
 {
 	//TODO 初始化游戏，计分
 	_start = true;
-	Block *b1 = new Block(2048);
+	auto *b1 = new Block(2048);
 	b1->SetBlock(2);
 	ui.block_0->addWidget(b1);
 }

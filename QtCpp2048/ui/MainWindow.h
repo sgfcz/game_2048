@@ -14,7 +14,7 @@ public:
 
 	void start();
 private:
-	Ui::MainWindow ui;
+	Ui::MainWindow ui{};
 	bool _start = false;
 
 private:
