@@ -54,6 +54,7 @@ void MainWindow::movedown()
 	//ื๗าต
 	std::cout << "Move Down!"<< std::endl;
 	Qt::red;
+    end();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
