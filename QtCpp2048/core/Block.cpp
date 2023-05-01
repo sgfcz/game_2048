@@ -1,4 +1,4 @@
-#include "Block.h"
+#include "include/Block.h"
 
 Block::Block(int moveNumber, QWidget *parent) : QLabel(parent)
 {

@@ -3,7 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QKeyEvent>
 #include "ui_MainWindow.h"
-#include "../core/Block.h"
+#include "Block.h"
 
 class MainWindow : public QMainWindow
 {
