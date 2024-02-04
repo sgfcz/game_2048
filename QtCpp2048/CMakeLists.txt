@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.18)
 project(QtCpp2048)
 
 #苹果系统编译环境
@@ -21,7 +21,7 @@ FILE(GLOB_RECURSE UI "${CMAKE_CURRENT_SOURCE_DIR}/ui/*.ui")
 FILE(GLOB_RECURSE SRCS "${CMAKE_CURRENT_SOURCE_DIR}/core/*.cpp")
 FILE(GLOB_RECURSE INCLUDES "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 
-find_package(Qt5 COMPONENTS
+find_package(Qt6 COMPONENTS
         Core
         Gui
         Widgets
@@ -35,7 +35,7 @@ add_executable(QtCpp2048
         )
 
 target_link_libraries(QtCpp2048
-        Qt5::Core
-        Qt5::Gui
-        Qt5::Widgets
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
         )

@@ -3,3 +3,6 @@ QTCPP2048/.vs
 QTCPP2048/x64
 QtCpp2048/build
 QtCpp2048/.idea
+
+build
+.vscode
