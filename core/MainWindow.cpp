@@ -15,7 +15,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::start()
 {
-	//TODO 初始化游戏，计分
+	//TODO 鍒濆鍖栨父鎴忥紝璁″垎
 	_start = true;
 	auto *b1 = new Block(2048);
 	b1->SetBlock(2);
@@ -24,36 +24,35 @@ void MainWindow::start()
 
 void MainWindow::end()
 {
-	//TODO 判断游戏是否结束
+	//TODO 鍒ゆ柇娓告垙鏄惁缁撴潫
 }
 
 void MainWindow::moveLeft()
 {
-	//TODO 向左移动逻辑
+	//TODO 鍚戝乏绉诲姩閫昏緫
 	std::cout << "Move Left!" << std::endl;
 	end();
 }
 
 void MainWindow::moveRight()
 {
-	//TODO 向右移动逻辑
+	//TODO 鍚戝彸绉诲姩閫昏緫
 	std::cout << "Move Right!"<< std::endl;
 	end();
 }
 
 void MainWindow::moveUp()
 {
-	//TODO 向上移动逻辑
+	//TODO 鍚戜笂绉诲姩閫昏緫
 	std::cout << "Move Up!"<< std::endl;
 	end();
 }
 
 void MainWindow::movedown()
 {
-	//TODO 向下移动逻辑
-	//作业
+	//TODO 鍚戜笅绉诲姩閫昏緫
+	//浣滀笟
 	std::cout << "Move Down!"<< std::endl;
-	Qt::red;
     end();
 }
 

@@ -6,3 +6,5 @@ QtCpp2048/.idea
 
 build
 .vscode
+.idea
+cmake-build-debug

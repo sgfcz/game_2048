@@ -30,7 +30,7 @@ void Block::BlockSetColor(int moveNumber)
 	else 
 		palette.setColor(QPalette::WindowText, QColor(0xf9f6f2));
 	this->setStyleSheet(QString("background-color: %1").arg(QString::fromStdString(BlockGetColor(moveNumber))));
-	//palette的优先级小于setStyleSheet，只要父窗口设置了此函数，其他palette就会失效
+	//palette鐨勪紭鍏堢骇灏忎簬setStyleSheet锛屽彧瑕佺埗绐楀彛璁剧疆浜嗘鍑芥暟锛屽叾浠杙alette灏变細澶辨晥
 	this->setPalette(palette);
 }
 

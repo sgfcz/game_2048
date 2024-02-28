@@ -3,7 +3,7 @@ project(QtCpp2048)
 
 #苹果系统编译环境
 if(APPLE)
-    set(CMAKE_PREFIX_PATH "/Volumes/KnowBoat/Qt5.11.3/5.11.3/clang_64/lib/cmake")
+    set(CMAKE_PREFIX_PATH "/Volumes/KnowBoat/Qt/6.8.0/macos/lib/cmake")
     set(CMAKE_OSX_ARCHITECTURES x86_64)
 endif()
 
@@ -17,12 +17,12 @@ set(CMAKE_AUTOUIC ON)
 list(APPEND CMAKE_AUTOUIC_SEARCH_PATHS "ui")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-FILE(GLOB_RECURSE UI "${CMAKE_CURRENT_SOURCE_DIR}/ui/*.ui")
-FILE(GLOB_RECURSE SRCS "${CMAKE_CURRENT_SOURCE_DIR}/core/*.cpp")
-FILE(GLOB_RECURSE INCLUDES "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+FILE(GLOB_RECURSE ui "ui/*.ui")
+FILE(GLOB_RECURSE SRCS "core/*.cpp")
+FILE(GLOB_RECURSE INCLUDES "include/*.h")
 
 find_package(Qt6 COMPONENTS
-        Core
+        core
         Gui
         Widgets
         REQUIRED)
