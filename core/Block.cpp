@@ -1,4 +1,5 @@
 #include "include/Block.h"
+#include <QtCore/qstringliteral.h>
 
 Block::Block(int moveNumber, QWidget *parent) : QLabel(parent)
 {
@@ -20,6 +21,8 @@ void Block::SetBlock(int moveNumber)
 		palette.setColor(QPalette::WindowText, QColor(0xf9f6f2));
 	this->setPalette(palette);
 	this->setText(QString::number(moveNumber));
+
+	_blockNumber = moveNumber;
 }
 
 void Block::BlockSetColor(int moveNumber)
@@ -47,4 +50,6 @@ std::string Block::BlockGetColor(int moveNumber)
 		if (bc.getnumber() == moveNumber)
 			return bc.getcolor();
 	}
+
+	return "";
 }
