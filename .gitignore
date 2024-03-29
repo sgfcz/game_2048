@@ -1,10 +1,6 @@
-﻿QTCPP2048/QTCPP2048/x64
-QTCPP2048/.vs
-QTCPP2048/x64
-QtCpp2048/build
-QtCpp2048/.idea
-
-build
+﻿build
 .vscode
 .idea
+.cache
+.DS_Store
 cmake-build-debug
