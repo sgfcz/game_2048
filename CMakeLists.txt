@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.18)
 project(QtCpp2048)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #苹果系统编译环境
 if(APPLE)
-    set(CMAKE_PREFIX_PATH "/Volumes/KnowBoat/Qt/6.8.0/macos/lib/cmake")
     set(CMAKE_OSX_ARCHITECTURES x86_64)
 endif()
 
