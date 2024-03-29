@@ -117,7 +117,6 @@
              <font>
               <family>Arial</family>
               <pointsize>12</pointsize>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -149,7 +148,6 @@
              <font>
               <family>Arial</family>
               <pointsize>12</pointsize>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -183,7 +181,6 @@
            <font>
             <family>Arial</family>
             <pointsize>35</pointsize>
-            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -194,7 +191,7 @@
            <string>2048</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -249,7 +246,6 @@ border-radius:8px;</string>
                 <font>
                  <family>Arial</family>
                  <pointsize>12</pointsize>
-                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -260,7 +256,7 @@ border-radius:8px;</string>
                 <string>SCORE</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignCenter</set>
+                <set>Qt::AlignmentFlag::AlignCenter</set>
                </property>
               </widget>
              </item>
@@ -270,7 +266,6 @@ border-radius:8px;</string>
                 <font>
                  <family>Arial</family>
                  <pointsize>12</pointsize>
-                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -281,7 +276,7 @@ border-radius:8px;</string>
                 <string>0</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignCenter</set>
+                <set>Qt::AlignmentFlag::AlignCenter</set>
                </property>
               </widget>
              </item>
@@ -319,7 +314,6 @@ border-radius:8px;</string>
                 <font>
                  <family>Arial</family>
                  <pointsize>12</pointsize>
-                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -330,7 +324,7 @@ border-radius:8px;</string>
                 <string>BEST</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignCenter</set>
+                <set>Qt::AlignmentFlag::AlignCenter</set>
                </property>
               </widget>
              </item>
@@ -340,7 +334,6 @@ border-radius:8px;</string>
                 <font>
                  <family>Arial</family>
                  <pointsize>12</pointsize>
-                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -351,7 +344,7 @@ border-radius:8px;</string>
                 <string>0</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignCenter</set>
+                <set>Qt::AlignmentFlag::AlignCenter</set>
                </property>
               </widget>
              </item>
@@ -363,7 +356,7 @@ border-radius:8px;</string>
         <item row="1" column="1">
          <spacer name="verticalSpacer">
           <property name="orientation">
-           <enum>Qt::Vertical</enum>
+           <enum>Qt::Orientation::Vertical</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
