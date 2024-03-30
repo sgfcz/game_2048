@@ -25,8 +25,10 @@ MainWindow::MainWindow(QWidget *parent) {
   ui.setupUi(this);
   this->setAttribute(Qt::WA_StyledBackground);
 
-  connect(ui.NewGameButton, &QPushButton::clicked, this, &MainWindow::slotClickedNewGame);
-  connect(ui.PreviousButton, &QPushButton::clicked, this,&MainWindow::slotClickedPrevious);
+  connect(ui.NewGameButton, &QPushButton::clicked, this,
+          &MainWindow::slotClickedNewGame);
+  connect(ui.PreviousButton, &QPushButton::clicked, this,
+          &MainWindow::slotClickedPrevious);
 
   start();
 }
@@ -34,30 +36,52 @@ MainWindow::MainWindow(QWidget *parent) {
 MainWindow::~MainWindow() = default;
 
 void MainWindow::start() {
+  _saveHistoryIndex.clear();
   _saveBlockIndex.clear();
+  _saveFreeBlock.clear();
+
   _saveBlockIndex.resize(16);
+  _saveFreeBlock.resize(16);
+  std::iota(_saveFreeBlock.begin(), _saveFreeBlock.end(), 0);
+
+  ui.BestNumber->setText("BEST\n0");
+  ui.ScoreNumber->setText("ScoreNumber\n0");
+
   // TODO 初始化游戏，计分
   _start = true;
-  auto *b1 = new Block(2048);
-  b1->SetBlock(2);
 
+  createblock();
+}
+
+void MainWindow::createblock() {
+  auto *b1 = new Block(2048);
+
+  // 设置方块数字
+  std::mt19937 engine(std::random_device{}());
+  std::uniform_real_distribution<double> distribution(0.0, 1.0);
+  double random_number = distribution(engine);
+  int setNumber = random_number < 0.9 ? 2 : 4;
+  b1->SetBlock(setNumber);
+
+  // 设置随机格子
   std::random_device dev;
   std::mt19937 rng(dev());
-  std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 15);
-  int randomwidget = dist6(rng);
+  std::uniform_int_distribution<std::mt19937::result_type> dist6(
+      0, _saveFreeBlock.size());
 
+  int randomwidget;
+  for (int i = 0; i < 100; i++) {
+    randomwidget = _saveFreeBlock[dist6(rng)];
+    std::cout << randomwidget << std::endl;
+  }
   auto layoutw = ui.centralwidget->findChild<QGridLayout *>(
       "block_" + QString::number(randomwidget));
 
   if (layoutw != nullptr) {
     layoutw->addWidget(b1);
-    qDebug() << layoutw->objectName();
-
-    _saveBlockIndex[randomwidget] = 2;
+    _saveBlockIndex[randomwidget] = setNumber;
   }
 }
-
-void MainWindow::makeblock() {}
 
 void MainWindow::end() {
   // TODO 判断游戏是否结束
@@ -90,13 +114,12 @@ void MainWindow::end() {
   }
 
   // 如果还有0, 在这些格子中随机在生成一个按钮
+  createblock();
 }
 
-void MainWindow::slotClickedNewGame() {}
+void MainWindow::slotClickedNewGame() { start(); }
 
-void MainWindow::slotClickedPrevious() {
-
-}
+void MainWindow::slotClickedPrevious() {}
 
 void MainWindow::moveLeft() {
   // TODO 向左移动逻辑
@@ -118,7 +141,6 @@ void MainWindow::moveUp() {
 
 void MainWindow::movedown() {
   // TODO 向下移动逻辑
-  // 作业
   std::cout << "Move Down!" << std::endl;
   end();
 }
