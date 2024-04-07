@@ -42,6 +42,7 @@ void MainWindow::start() {
 
   _saveBlockIndex.resize(16);
   _saveFreeBlock.resize(16);
+
   std::iota(_saveFreeBlock.begin(), _saveFreeBlock.end(), 0);
 
   ui.BestNumber->setText("BEST\n0");
@@ -66,16 +67,12 @@ void MainWindow::createblock() {
   // 设置随机格子
   std::random_device dev;
   std::mt19937 rng(dev());
-  std::uniform_int_distribution<std::mt19937::result_type> dist6(
-      0, _saveFreeBlock.size());
+  std::uniform_int_distribution<std::mt19937::result_type> dist6(0, _saveFreeBlock.size() - 1);
 
-  int randomwidget;
-  for (int i = 0; i < 100; i++) {
-    randomwidget = _saveFreeBlock[dist6(rng)];
-    std::cout << randomwidget << std::endl;
-  }
-  auto layoutw = ui.centralwidget->findChild<QGridLayout *>(
-      "block_" + QString::number(randomwidget));
+  int randomwidget = _saveFreeBlock[dist6(rng)];
+  std::cout << "randomwidget: " << randomwidget << std::endl;
+
+  auto layoutw = ui.centralwidget->findChild<QGridLayout *>("block_" + QString::number(randomwidget));
 
   if (layoutw != nullptr) {
     layoutw->addWidget(b1);

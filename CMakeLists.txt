@@ -22,7 +22,7 @@ FILE(GLOB_RECURSE SRCS "core/*.cpp")
 FILE(GLOB_RECURSE INCLUDES "include/*.h")
 
 find_package(Qt6 COMPONENTS
-        core
+        Core
         Gui
         Widgets
         REQUIRED)
