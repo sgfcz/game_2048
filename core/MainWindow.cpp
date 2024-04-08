@@ -76,6 +76,7 @@ void MainWindow::createblock() {
   auto layoutw = ui.centralwidget->findChild<QGridLayout *>("block_" + QString::number(randomwidget));
 
   if (layoutw != nullptr) {
+    b1->setObjectName("numbox" + QString::number(randomwidget));
     layoutw->addWidget(b1);
     _saveBlockIndex[randomwidget] = setNumber;
   }
@@ -104,7 +105,7 @@ void MainWindow::end() {
     }
   }
 
-  if (rowmoveable && colmoveable) {
+  if (!rowmoveable && !colmoveable) {
     // 游戏结束
     QMessageBox::information(this, "Game Over", "This game is over!");
     start();
@@ -119,7 +120,21 @@ void MainWindow::calNumMove() {
   //计算相邻的格子相加
 }
 
-void MainWindow::slotClickedNewGame() { start(); }
+void MainWindow::slotClickedNewGame() {
+  //清除所有格子和盒子
+  for (int x = 0; x < GAMEROW * GAMECOL; x++) {
+    auto layoutw = ui.centralwidget->findChild<QGridLayout *>("block_" + QString::number(x));
+    if (layoutw != nullptr) {
+      auto box = this->findChild<Block *>("numbox" + QString::number(x));
+      if (box != nullptr) {
+        layoutw->removeWidget(box);
+        box->deleteLater();
+      }
+    }
+  }
+
+  start();
+}
 
 void MainWindow::slotClickedPrevious() {}
 
@@ -148,7 +163,6 @@ void MainWindow::movedown() {
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
-  qDebug() << event->key();
   switch (event->key()) {
   case Qt::Key_Left:
   case Qt::Key_A:
