@@ -24,11 +24,12 @@
 MainWindow::MainWindow(QWidget *parent) {
   ui.setupUi(this);
   this->setAttribute(Qt::WA_StyledBackground);
+  ui.BlockWidget->setFocusPolicy(Qt::StrongFocus);
+  ui.NewGameButton->setFocusPolicy(Qt::NoFocus);
+  ui.PreviousButton->setFocusPolicy(Qt::NoFocus);
 
-  connect(ui.NewGameButton, &QPushButton::clicked, this,
-          &MainWindow::slotClickedNewGame);
-  connect(ui.PreviousButton, &QPushButton::clicked, this,
-          &MainWindow::slotClickedPrevious);
+  connect(ui.NewGameButton, &QPushButton::clicked, this, &MainWindow::slotClickedNewGame);
+  connect(ui.PreviousButton, &QPushButton::clicked, this, &MainWindow::slotClickedPrevious);
 
   start();
 }
@@ -103,7 +104,7 @@ void MainWindow::end() {
     }
   }
 
-  if (!rowmoveable && !colmoveable) {
+  if (rowmoveable && colmoveable) {
     // 游戏结束
     QMessageBox::information(this, "Game Over", "This game is over!");
     start();
@@ -112,6 +113,10 @@ void MainWindow::end() {
 
   // 如果还有0, 在这些格子中随机在生成一个按钮
   createblock();
+}
+
+void MainWindow::calNumMove() {
+  //计算相邻的格子相加
 }
 
 void MainWindow::slotClickedNewGame() { start(); }
@@ -143,17 +148,22 @@ void MainWindow::movedown() {
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
+  qDebug() << event->key();
   switch (event->key()) {
   case Qt::Key_Left:
+  case Qt::Key_A:
     moveLeft();
     break;
   case Qt::Key_Right:
+  case Qt::Key_D:
     moveRight();
     break;
   case Qt::Key_Up:
+  case Qt::Key_W:
     moveUp();
     break;
   case Qt::Key_Down:
+  case Qt::Key_S:
     movedown();
     break;
   default:

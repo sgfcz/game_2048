@@ -1,3 +1,6 @@
+#ifndef MAINWINDOW_H_INCLUDED
+#define MAINWINDOW_H_INCLUDED
+
 #pragma once
 #include <QKeyEvent>
 #include <QtCore/qtmetamacros.h>
@@ -30,9 +33,12 @@ private:
   void moveUp();                                 // 按下上移动
   void movedown();                               // 按下下移动
   void createblock();                            // 生成一个按钮
+  void calNumMove();                             // 计算移动后的队列
   void keyPressEvent(QKeyEvent *event) override; // 按键响应事件
 
 private slots:
   void slotClickedNewGame();  // 点击新游戏按钮响应槽函数
   void slotClickedPrevious(); // 点击返回上一步按钮响应槽函数
 };
+
+#endif // MAINWINDOW_H_INCLUDED

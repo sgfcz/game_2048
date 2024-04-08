@@ -143,6 +143,9 @@
               <bold>true</bold>
              </font>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
 	background-color: rgb(143, 122, 102);
@@ -179,6 +182,9 @@
               <pointsize>15</pointsize>
               <bold>true</bold>
              </font>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -320,6 +326,9 @@ border-radius:8px;</string>
       </property>
       <item row="0" column="0">
        <widget class="QWidget" name="BlockWidget" native="true">
+        <property name="focusPolicy">
+         <enum>Qt::StrongFocus</enum>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(187, 173, 160);
 border-radius:8px;
