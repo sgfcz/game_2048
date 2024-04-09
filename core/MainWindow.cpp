@@ -79,22 +79,47 @@ void MainWindow::createblock() {
     b1->setObjectName("numbox" + QString::number(randomwidget));
     layoutw->addWidget(b1);
     _saveBlockIndex[randomwidget] = setNumber;
+
+    _saveFreeBlock.erase(std::find(_saveFreeBlock.begin(),  _saveFreeBlock.end(),  randomwidget));
   }
 }
 
 void MainWindow::end() {
   // TODO 判断游戏是否结束
-  bool rowmoveable, colmoveable;
-  rowmoveable = colmoveable = false;
+  bool rowmoveable = false;
+  bool colmoveable = false;
+  rowmoveable = checkRowValid();
+  colmoveable = checkColValid();
 
-  // 横向查看是否游戏结束
-  for (int i = 0; i < _saveBlockIndex.size() - 1; i++) {
-    if (_saveBlockIndex[i] == _saveBlockIndex[i + 1] ||
-        _saveBlockIndex[i + 1] == 0) {
-      rowmoveable = true;
-      break;
+  if (!rowmoveable && !colmoveable) {
+    // 游戏结束
+    QMessageBox::information(this, "Game Over", "This game is over!");
+    start();
+    return;
+  }
+
+  // 如果还有0, 在这些格子中随机在生成一个按钮
+  clearAllBlock();
+  setAllBlock();
+  calFreeBlockList();
+  createblock();
+}
+
+void MainWindow::calFreeBlockList() {
+  _saveFreeBlock.clear();
+  _saveFreeBlock.resize(16);
+  std::iota(_saveFreeBlock.begin(), _saveFreeBlock.end(), 0);
+
+  for (int i = 0; i < _saveBlockIndex.size(); i++) {
+    if (_saveBlockIndex[i] !=  0) {
+      _saveFreeBlock.erase(std::find(_saveFreeBlock.begin(),  _saveFreeBlock.end(),  i));
     }
   }
+}
+
+bool MainWindow::checkColValid() {
+  bool colmoveable;
+  colmoveable = false;
 
   // 纵向查看是否还有活动空间
   for (int i = 0; i < _saveBlockIndex.size() - 4; i++) {
@@ -105,23 +130,33 @@ void MainWindow::end() {
     }
   }
 
-  if (!rowmoveable && !colmoveable) {
-    // 游戏结束
-    QMessageBox::information(this, "Game Over", "This game is over!");
-    start();
-    return;
-  }
-
-  // 如果还有0, 在这些格子中随机在生成一个按钮
-  createblock();
+  return colmoveable;
 }
 
-void MainWindow::calNumMove() {
-  //计算相邻的格子相加
+bool MainWindow::checkRowValid() {
+  bool rowmoveable = false;
+
+  // 横向查看是否游戏结束
+  for (int i = 0; i < _saveBlockIndex.size() - 1; i++) {
+    if (_saveBlockIndex[i] == _saveBlockIndex[i + 1] ||
+        _saveBlockIndex[i + 1] == 0) {
+      rowmoveable = true;
+      break;
+    }
+  }
+
+  return rowmoveable;
 }
 
 void MainWindow::slotClickedNewGame() {
-  //清除所有格子和盒子
+  clearAllBlock();
+  start();
+}
+
+void MainWindow::slotClickedPrevious() {}
+
+void MainWindow::clearAllBlock() {
+  //清除所有格子
   for (int x = 0; x < GAMEROW * GAMECOL; x++) {
     auto layoutw = ui.centralwidget->findChild<QGridLayout *>("block_" + QString::number(x));
     if (layoutw != nullptr) {
@@ -132,33 +167,100 @@ void MainWindow::slotClickedNewGame() {
       }
     }
   }
-
-  start();
 }
 
-void MainWindow::slotClickedPrevious() {}
+void MainWindow::setAllBlock()
+{
+  //将已有的格子放回来
+  for (int i = 0; i < _saveBlockIndex.size(); i++) {
+    if (_saveBlockIndex[i] != 0) {
+      auto *b1 = new Block(2048);
+      b1->SetBlock(_saveBlockIndex[i]);
+      auto layoutw = ui.centralwidget->findChild<QGridLayout *>("block_" + QString::number(i));
+      if (layoutw != nullptr) {
+        b1->setObjectName("numbox" + QString::number(i));
+        layoutw->addWidget(b1);
+      }
+    }
+  }
+}
+
+void MainWindow::calRowBlock(Qt::Key key)
+{
+  //TODO 计算横排
+  if (key == Qt::Key_Left) {
+    for (int i = 0; i < GAMEROW; i++) {
+      int index = i * GAMEROW;
+      auto list = listCal(std::vector<int>{_saveBlockIndex[index], _saveBlockIndex[index + 1],
+      _saveBlockIndex[index + 2], _saveBlockIndex[index + 3]});
+
+      if (list.empty()) {
+        continue;
+      }
+
+      list.resize(4);
+      std::copy(list.begin(),  list.end(),  _saveBlockIndex.begin() + index);
+    }
+  }
+  else if (key == Qt::Key_Right) {
+  }
+}
+
+void MainWindow::calColBlock(Qt::Key key)
+{
+  //TODO 计算竖排
+  if (key == Qt::Key_Up) {
+  }
+  else if (key == Qt::Key_Down) {
+
+  }
+}
+
+std::vector<int> MainWindow::listCal(std::vector<int> numList) {
+  for (int i = 0; i < numList.size() - 1; i++) {
+    if (numList[i] ==  numList[i+1] && numList[i] !=  0) {
+      numList[i] = numList[i] * 2;
+      numList[i + 1] = 0;
+    }
+  }
+
+  for (auto i = numList.begin(); i != numList.end();) {
+    if (*i ==  0) {
+      i = numList.erase(i);
+      continue;
+    }
+
+    ++i;
+  }
+
+  return numList;
+}
 
 void MainWindow::moveLeft() {
-  // TODO 向左移动逻辑
-  std::cout << "Move Left!" << std::endl;
+  std::cout << "Move Right!" << std::endl;
+  // TODO 向左移动计算
+  calRowBlock(Qt::Key_Left);
   end();
 }
 
 void MainWindow::moveRight() {
-  // TODO 向右移动逻辑
   std::cout << "Move Right!" << std::endl;
+  // TODO 向右移动计算
+  calRowBlock(Qt::Key_Right);
   end();
 }
 
 void MainWindow::moveUp() {
-  // TODO 向上移动逻辑
   std::cout << "Move Up!" << std::endl;
+  // TODO 向上移动计算
+  calColBlock(Qt::Key_Up);
   end();
 }
 
 void MainWindow::movedown() {
-  // TODO 向下移动逻辑
   std::cout << "Move Down!" << std::endl;
+  // TODO 向下移动计算
+  calColBlock(Qt::Key_Down);
   end();
 }
 
