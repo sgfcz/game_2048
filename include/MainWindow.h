@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H_INCLUDED
+﻿#ifndef MAINWINDOW_H_INCLUDED
 #define MAINWINDOW_H_INCLUDED
 
 #pragma once
@@ -41,7 +41,7 @@ private:
   void calRowBlock(Qt::Key key);                                  // 计算横向格子
   void calColBlock(Qt::Key key);                                  // 计算列向格子
   std::vector<int> listCal(std::vector<int> numList);             // 使用递归计算
-  void calFreeBlockList();                                        //重新计算用于随即的格子
+  void calFreeBlockList();                                        // 重新计算用于随即的格子
 
 private slots:
   void slotClickedNewGame();  // 点击新游戏按钮响应槽函数

@@ -1,4 +1,4 @@
-#include "include/MainWindow.h"
+﻿#include "include/MainWindow.h"
 #include "include/Block.h"
 
 #include <QMap>
@@ -203,6 +203,18 @@ void MainWindow::calRowBlock(Qt::Key key)
     }
   }
   else if (key == Qt::Key_Right) {
+      for (int i = 0; i < GAMEROW; i++) {
+          int index = i * GAMEROW;
+          auto list = listCal(std::vector<int>{_saveBlockIndex[index], _saveBlockIndex[index + 1],
+              _saveBlockIndex[index + 2], _saveBlockIndex[index + 3]});
+
+          if (list.empty()) {
+              continue;
+          }
+
+          list.resize(4);
+          std::copy(list.begin(), list.end(), _saveBlockIndex.begin() + index);
+      }
   }
 }
 
