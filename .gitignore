@@ -8,3 +8,4 @@ cmake-build-debug
 .vs
 CMakePresets.json
 CMakeUserPresets.json
+cmake-build-debug-visual-studio
