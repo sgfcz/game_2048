@@ -1,13 +1,9 @@
-#include <QtCore/qlogging.h>
-
-#include <QtWidgets/QApplication>
-
 #include "include/MainWindow.h"
 
-int main(int argc, char* argv[]) {
-  QApplication a(argc, argv);
-  MainWindow w;
-  w.show();
+auto main(int argc, char *argv[]) -> int {
+  QApplication app(argc, argv);
+  MainWindow main_window;
+  main_window.show();
 
-  return a.exec();
+  return QApplication::exec();
 }

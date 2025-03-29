@@ -1,31 +1,30 @@
 #include "include/Block.h"
 
-#include <QtCore/qstringliteral.h>
 #include <QtGui/qfont.h>
 
-Block::Block(int moveNumber, QWidget *parent) : QLabel(parent) {
+Block::Block(const int number, QWidget *parent) : QLabel(parent) {
   this->setAutoFillBackground(true);
-  BlockSetColor(moveNumber);
-  BlockSetFont(moveNumber);
+  BlockSetColor(number);
+  BlockSetFont(number);
 }
 
 Block::~Block() = default;
 
-void Block::SetBlock(int moveNumber) {
+void Block::SetBlock(const int number) {
   QPalette palette = this->palette();
-  this->setStyleSheet(QString("background-color: %1").arg(QString::fromStdString(BlockGetColor(moveNumber))));
+  this->setStyleSheet(QString("background-color: %1").arg(QString::fromStdString(BlockGetColor(number))));
 
-  if (moveNumber == 2 || moveNumber == 4) {
+  if (number == 2 || number == 4) {
     palette.setColor(QPalette::WindowText, QColor(0x776e65));
   } else {
     palette.setColor(QPalette::WindowText, QColor(0xf9f6f2));
   }
   this->setPalette(palette);
-  this->setText(QString::number(moveNumber));
-  _blockNumber = moveNumber;
+  this->setText(QString::number(number));
+  blockNumber_ = number;
 }
 
-void Block::BlockSetColor(int moveNumber) {
+void Block::BlockSetColor(const int moveNumber) {
   QPalette palette;
   if (moveNumber == 2 || moveNumber == 4) {
     palette.setColor(QPalette::WindowText, QColor(0x776e65));
@@ -37,14 +36,14 @@ void Block::BlockSetColor(int moveNumber) {
   this->setPalette(palette);
 }
 
-void Block::BlockSetFont(int moveNumber) {
-  this->setText(QString::number(moveNumber));
+void Block::BlockSetFont(const int number) {
+  this->setText(QString::number(number));
   this->setFont(QFont("Arial", 40, 75));
   this->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 }
 
-auto Block::BlockGetColor(int number) -> std::string {
-  for (BlockColor bc : _colorMap) {
+auto Block::BlockGetColor(const int number) -> std::string {
+  for (BlockColor bc : colorMap_) {
     if (bc.GetNumber() == number) return bc.GetColor();
   }
 
