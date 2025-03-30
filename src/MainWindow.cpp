@@ -1,4 +1,4 @@
-﻿#include "include/MainWindow.h"
+﻿#include "MainWindow.h"
 
 #include <QtCore/qdebug.h>
 #include <QtCore/qobject.h>
@@ -10,9 +10,8 @@
 #include <QtWidgets/qtablewidget.h>
 
 #include <iostream>
-#include <random>
 
-#include "include/Block.h"
+#include "Block.h"
 
 #define GAME_ROW 4
 #define GAME_COLUMN 4
@@ -88,7 +87,7 @@ auto MainWindow::RandomGenerateNumber() -> int {
   return set_number;
 }
 
-void MainWindow::End() {
+void MainWindow::End(const bool moved) {
   // TODO 判断游戏是否结束
   bool row_move_able = false;
   bool column_move_able = false;
@@ -106,7 +105,9 @@ void MainWindow::End() {
   ClearAllBlock();
   SetAllBlock();
   CalculateFreeBlockList();
-  CreateBlock();
+  if (moved) {
+    CreateBlock();
+  }
 }
 
 void MainWindow::CalculateFreeBlockList() {
@@ -220,13 +221,17 @@ auto MainWindow::CalculateRowBlock(const Qt::Key key) -> bool {
   return move_action;
 }
 
-void MainWindow::CalculateColumnBlock(const Qt::Key key) {
+auto MainWindow::CalculateColumnBlock(const Qt::Key key) -> bool {
   // TODO 计算竖排
+  bool move_action = false;
+
   if (key == Qt::Key_Up) {
     // TODO 计算竖排
   } else if (key == Qt::Key_Down) {
     // TODO 计算竖排
   }
+
+  return move_action;
 }
 
 auto MainWindow::ListCalculate(std::vector<int> numList) -> std::vector<int> {
@@ -253,28 +258,28 @@ void MainWindow::MoveLeft() {
   std::cout << "Move Right!" << '\n';
   // TODO 向左移动计算
   auto move_action = CalculateRowBlock(Qt::Key_Left);
-  End();
+  End(move_action);
 }
 
 void MainWindow::MoveRight() {
   std::cout << "Move Right!" << '\n';
   // TODO 向右移动计算
-  CalculateRowBlock(Qt::Key_Right);
-  End();
+  auto move_action = CalculateRowBlock(Qt::Key_Right);
+  End(move_action);
 }
 
 void MainWindow::MoveUp() {
   std::cout << "Move Up!" << '\n';
   // TODO 向上移动计算
-  CalculateColumnBlock(Qt::Key_Up);
-  End();
+  auto move_action = CalculateColumnBlock(Qt::Key_Up);
+  End(move_action);
 }
 
 void MainWindow::MoveDown() {
   std::cout << "Move Down!" << '\n';
   // TODO 向下移动计算
-  CalculateColumnBlock(Qt::Key_Down);
-  End();
+  auto move_action = CalculateColumnBlock(Qt::Key_Down);
+  End(move_action);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {

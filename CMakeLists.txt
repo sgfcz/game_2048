@@ -18,13 +18,18 @@ set(CMAKE_AUTOUIC ON)
 list(APPEND CMAKE_AUTOUIC_SEARCH_PATHS "ui")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-FILE(GLOB_RECURSE ui "ui/MainWindow.ui")
+FILE(GLOB_RECURSE ui "src/MainWindow.ui")
 FILE(GLOB_RECURSE SRCS
-        "core/Block.cpp"
-        "core/MainWindow.cpp")
+        "src/main.cpp"
+        "src/Block.cpp"
+        "src/MainWindow.cpp"
+        "src/CalculationBlock.cpp"
+)
 FILE(GLOB_RECURSE INCLUDES
-        "include/Block.h" ,
-        "include/MainWindow.h")
+        "src/Block.h" ,
+        "src/MainWindow.h"
+        "src/CalculationBlock.h"
+)
 
 find_package(Qt6 COMPONENTS
         Core
@@ -33,7 +38,6 @@ find_package(Qt6 COMPONENTS
         REQUIRED)
 
 add_executable(QtCpp2048
-        main.cpp
         ${UI}
         ${SRCS}
         ${INCLUDES}

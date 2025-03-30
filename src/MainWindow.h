@@ -26,7 +26,7 @@ class MainWindow final : public QMainWindow {
   std::vector<int> saveBlockIndex_;                 // 存储格子里面的数字
   std::vector<std::vector<int>> saveHistoryIndex_;  // 存储所有的历史步
 
-  void End();                                                        // 判断游戏是否结束
+  void End(bool moved);                                              // 判断游戏是否结束
   void MoveLeft();                                                   // 按下左移动
   void MoveRight();                                                  // 按下右移动
   void MoveUp();                                                     // 按下上移动
@@ -37,11 +37,10 @@ class MainWindow final : public QMainWindow {
   void ClearAllBlock();                                              // 清空已经存在的所有格子
   void SetAllBlock();                                                // 设置已有格子
   auto CalculateRowBlock(Qt::Key key) -> bool;                       // 计算横向格子
-  void CalculateColumnBlock(Qt::Key key);                            // 计算列向格子
+  auto CalculateColumnBlock(Qt::Key key) -> bool;                    // 计算列向格子
   auto ListCalculate(std::vector<int> numList) -> std::vector<int>;  // 使用递归计算
   void CalculateFreeBlockList();                                     // 重新计算用于随即的格子
-  auto RandomGenerateBlock() -> int;
-  auto RandomGenerateNumber() -> int;
+
 
  private slots:
   void slotClickedNewGame();   // 点击新游戏按钮响应槽函数
