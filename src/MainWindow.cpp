@@ -3,7 +3,6 @@
 #include <QtCore/qdebug.h>
 #include <QtCore/qobject.h>
 #include <QtCore/qstring.h>
-#include <QtGui/qvalidator.h>
 #include <QtWidgets/qlayout.h>
 #include <QtWidgets/qmessagebox.h>
 #include <QtWidgets/qpushbutton.h>
@@ -12,9 +11,7 @@
 #include <iostream>
 
 #include "Block.h"
-
-#define GAME_ROW 4
-#define GAME_COLUMN 4
+#include "CalculationBlock.h"
 
 MainWindow::MainWindow(QWidget *) {
   ui_.setupUi(this);
@@ -25,6 +22,8 @@ MainWindow::MainWindow(QWidget *) {
 
   connect(ui_.NewGameButton, &QPushButton::clicked, this, &MainWindow::slotClickedNewGame);
   connect(ui_.PreviousButton, &QPushButton::clicked, this, &MainWindow::slotClickedPrevious);
+
+  calculationBlock_ = std::make_shared<CalculationBlock>();
 
   start();
 }
@@ -54,10 +53,11 @@ void MainWindow::CreateBlock() {
   auto *b1 = new Block(kTwoThousandFortyEight);
 
   // 设置方块数字
-  auto set_number = RandomGenerateNumber();
+  auto set_number = calculationBlock_->RandomGenerateNumber();
   b1->SetBlock(set_number);
 
-  int random_widget = RandomGenerateBlock();
+  uint32_t randow_index = calculationBlock_->RandomGenerateBlock(saveFreeBlock_.size());
+  int random_widget = saveFreeBlock_[randow_index];
   std::cout << "random_widget: " << random_widget << '\n';
 
   if (auto *layout_widget = ui_.centralwidget->findChild<QGridLayout *>("block_" + QString::number(random_widget));
@@ -73,8 +73,8 @@ void MainWindow::End(const bool moved) {
   // TODO 判断游戏是否结束
   bool row_move_able = false;
   bool column_move_able = false;
-  row_move_able = CheckRowValid();
-  column_move_able = CheckColumnValid();
+  row_move_able = calculationBlock_->CheckRowValid(saveBlockIndex_);
+  column_move_able = calculationBlock_->CheckColumnValid(saveBlockIndex_);
 
   if (!row_move_able && !column_move_able) {
     // 游戏结束
@@ -104,34 +104,6 @@ void MainWindow::CalculateFreeBlockList() {
   }
 }
 
-auto MainWindow::CheckColumnValid() -> bool {
-  bool column_move_able = false;
-
-  // 纵向查看是否还有活动空间
-  for (int i = 0; i < saveBlockIndex_.size() - 4; i++) {
-    if (saveBlockIndex_[i] == saveBlockIndex_[i + 4] || saveBlockIndex_[i + 4] == 0) {
-      column_move_able = true;
-      break;
-    }
-  }
-
-  return column_move_able;
-}
-
-auto MainWindow::CheckRowValid() -> bool {
-  bool row_move_able = false;
-
-  // 横向查看是否游戏结束
-  for (int i = 0; i < saveBlockIndex_.size() - 1; i++) {
-    if (saveBlockIndex_[i] == saveBlockIndex_[i + 1] || saveBlockIndex_[i + 1] == 0) {
-      row_move_able = true;
-      break;
-    }
-  }
-
-  return row_move_able;
-}
-
 void MainWindow::slotClickedNewGame() {
   ClearAllBlock();
   start();
@@ -141,7 +113,7 @@ void MainWindow::slotClickedPrevious() {}
 
 void MainWindow::ClearAllBlock() {
   // 清除所有格子
-  for (int x = 0; x < GAME_ROW * GAME_COLUMN; x++) {
+  for (int x = 0; x < kGameRow * kGameColumn; x++) {
     if (auto *layout_widget = ui_.centralwidget->findChild<QGridLayout *>("block_" + QString::number(x));
         layout_widget != nullptr) {
       if (auto *box = this->findChild<Block *>("numbox" + QString::number(x)); box != nullptr) {
@@ -167,100 +139,27 @@ void MainWindow::SetAllBlock() {
   }
 }
 
-auto MainWindow::CalculateRowBlock(const Qt::Key key) -> bool {
-  // TODO 计算横排
-  bool move_action = false;
-  if (key == Qt::Key_Left) {
-    for (int i = 0; i < GAME_ROW; i++) {
-      int index = i * GAME_ROW;
-      auto list = ListCalculate(std::vector<int>{saveBlockIndex_[index], saveBlockIndex_[index + 1],
-                                                 saveBlockIndex_[index + 2], saveBlockIndex_[index + 3]});
-
-      if (list.empty()) {
-        continue;
-      }
-
-      list.resize(4);
-      move_action = true;
-      std::copy(list.begin(), list.end(), saveBlockIndex_.begin() + index);
-    }
-  } else if (key == Qt::Key_Right) {
-    for (int i = 0; i < GAME_ROW; i++) {
-      int index = i * GAME_ROW;
-      auto list = ListCalculate(std::vector<int>{saveBlockIndex_[index], saveBlockIndex_[index + 1],
-                                                 saveBlockIndex_[index + 2], saveBlockIndex_[index + 3]});
-
-      if (list.empty()) {
-        continue;
-      }
-
-      list.resize(4);
-      move_action = true;
-      std::copy(list.begin(), list.end(), saveBlockIndex_.begin() + index);
-    }
-  }
-
-  return move_action;
-}
-
-auto MainWindow::CalculateColumnBlock(const Qt::Key key) -> bool {
-  // TODO 计算竖排
-  bool move_action = false;
-
-  if (key == Qt::Key_Up) {
-    // TODO 计算竖排
-  } else if (key == Qt::Key_Down) {
-    // TODO 计算竖排
-  }
-
-  return move_action;
-}
-
-auto MainWindow::ListCalculate(std::vector<int> numList) -> std::vector<int> {
-  for (int i = 0; i < numList.size() - 1; i++) {
-    if (numList[i] == numList[i + 1] && numList[i] != 0) {
-      numList[i] = numList[i] * 2;
-      numList[i + 1] = 0;
-    }
-  }
-
-  for (auto i = numList.begin(); i != numList.end();) {
-    if (*i == 0) {
-      i = numList.erase(i);
-      continue;
-    }
-
-    ++i;
-  }
-
-  return numList;
-}
-
 void MainWindow::MoveLeft() {
   std::cout << "Move Right!" << '\n';
-  // TODO 向左移动计算
-  auto move_action = CalculateRowBlock(Qt::Key_Left);
+  auto move_action = calculationBlock_->CalculateLeftMove(saveBlockIndex_);
   End(move_action);
 }
 
 void MainWindow::MoveRight() {
   std::cout << "Move Right!" << '\n';
-  // TODO 向右移动计算
-  auto move_action = CalculateRowBlock(Qt::Key_Right);
+  auto move_action = calculationBlock_->CalculateRightMove(saveBlockIndex_);
   End(move_action);
 }
 
 void MainWindow::MoveUp() {
   std::cout << "Move Up!" << '\n';
-  // TODO 向上移动计算
-  auto move_action = CalculateColumnBlock(Qt::Key_Up);
+  auto move_action = calculationBlock_->CalculateUpMove(saveBlockIndex_);
   End(move_action);
 }
 
 void MainWindow::MoveDown() {
   std::cout << "Move Down!" << '\n';
-  // TODO 向下移动计算
-  auto move_action = CalculateColumnBlock(Qt::Key_Down);
+  auto move_action = calculationBlock_->CalculateDownMove(saveBlockIndex_);
   End(move_action);
 }
 

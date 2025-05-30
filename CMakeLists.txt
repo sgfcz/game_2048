@@ -26,9 +26,10 @@ FILE(GLOB_RECURSE SRCS
         "src/CalculationBlock.cpp"
 )
 FILE(GLOB_RECURSE INCLUDES
-        "src/Block.h" ,
+        "src/Block.h"
         "src/MainWindow.h"
         "src/CalculationBlock.h"
+        "src/framework.h"
 )
 
 find_package(Qt6 COMPONENTS
