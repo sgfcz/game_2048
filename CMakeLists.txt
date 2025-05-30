@@ -20,7 +20,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 FILE(GLOB_RECURSE ui "src/MainWindow.ui")
 FILE(GLOB_RECURSE SRCS
-        "src/main.cpp"
         "src/Block.cpp"
         "src/MainWindow.cpp"
         "src/CalculationBlock.cpp"
@@ -39,6 +38,7 @@ find_package(Qt6 COMPONENTS
         REQUIRED)
 
 add_executable(QtCpp2048
+        "src/main.cpp"
         ${UI}
         ${SRCS}
         ${INCLUDES}
@@ -49,3 +49,19 @@ target_link_libraries(QtCpp2048
         Qt6::Gui
         Qt6::Widgets
 )
+
+add_executable (qt_cpp_2048_test
+        "test/test.cpp"
+        ${UI}
+        ${SRCS}
+        ${INCLUDES}
+)
+
+target_link_libraries(qt_cpp_2048_test
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
+)
+
+enable_testing()
+add_test(NAME QtCpp2048Test COMMAND qt_cpp_2048_test)
