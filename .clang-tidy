@@ -51,7 +51,8 @@ Checks: >
   -readability-identifier-length,
   -readability-static-accessed-through-instance,
   -readability-magic-numbers,
-  -readability-convert-member-functions-to-static
+  -readability-convert-member-functions-to-static,
+  -readability-make-member-function-const
 
 # Turn all the warnings from the checks above into errors.
 WarningsAsErrors: "*"
