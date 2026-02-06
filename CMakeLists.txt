@@ -18,7 +18,7 @@ set(CMAKE_AUTOUIC ON)
 list(APPEND CMAKE_AUTOUIC_SEARCH_PATHS "ui")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-FILE(GLOB_RECURSE ui "src/MainWindow.ui")
+FILE(GLOB_RECURSE UI "src/MainWindow.ui")
 FILE(GLOB_RECURSE SRCS
         "src/Block.cpp"
         "src/MainWindow.cpp"
@@ -28,7 +28,7 @@ FILE(GLOB_RECURSE INCLUDES
         "src/Block.h"
         "src/MainWindow.h"
         "src/CalculationBlock.h"
-        "src/framework.h"
+        "src/Framework.h"
 )
 
 find_package(Qt6 COMPONENTS

@@ -9,6 +9,8 @@
 #include <QtWidgets/qtablewidget.h>
 
 #include <iostream>
+#include <algorithm>
+#include <numeric>
 
 #include "Block.h"
 #include "CalculationBlock.h"
@@ -41,15 +43,20 @@ void MainWindow::start() {
   std::iota(saveFreeBlock_.begin(), saveFreeBlock_.end(), 0);
 
   ui_.BestNumber->setText("BEST\n0");
-  ui_.ScoreNumber->setText("ScoreNumber\n0");
+  ui_.ScoreNumber->setText("SCORE\n0");
 
   // TODO 初始化游戏，计分
   start_ = true;
 
   CreateBlock();
+  CreateBlock();
 }
 
 void MainWindow::CreateBlock() {
+  if (saveFreeBlock_.empty()) {
+    return;
+  }
+
   auto *b1 = new Block(kTwoThousandFortyEight);
 
   // 设置方块数字
@@ -140,7 +147,7 @@ void MainWindow::SetAllBlock() {
 }
 
 void MainWindow::MoveLeft() {
-  std::cout << "Move Right!" << '\n';
+  std::cout << "Move Left!" << '\n';
   auto move_action = calculationBlock_->CalculateLeftMove(saveBlockIndex_);
   End(move_action);
 }

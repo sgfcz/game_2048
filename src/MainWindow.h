@@ -2,6 +2,7 @@
 #define MAINWINDOW_H_INCLUDED
 
 #include <QKeyEvent>
+#include <memory>
 #include <vector>
 
 #include "CalculationBlock.h"

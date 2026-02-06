@@ -24,7 +24,7 @@ class CalculationBlock {
   bool CalculateRightMove(std::vector<int32_t> &);         // 计算右移
   bool CalculateUpMove(std::vector<int32_t> &);            // 计算上移
   bool CalculateDownMove(std::vector<int32_t> &);          // 计算下移
-  std::vector<int> ListCalculate(std::vector<int32_t> numList);  // 使用递归计算
+  std::vector<int32_t> ListCalculate(const std::vector<int32_t> &numList);  // 使用递归计算
 };
 
 #endif  // CALCULATIONBLOCK_H
